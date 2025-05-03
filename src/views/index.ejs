@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Markdown Editor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown.min.css"
+    />
+
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body class="bg-gray-100">
+    <div class="h-[70px] bg-gray-300 relative">
+      <h3 class="text-center lg:text-2xl text-xl pt-4">Markdown</h3>
+      <div class="lg:absolute mt-1 lg:mt-0 top-[15px] right-[20px]">
+        <% if (user) { %>
+        <p class="text-[12px] lg:text-sm">Welcome, <%= user.name %>!</p>
+        <% } else { %>
+        <button class="button google">
+          <a style="text-decoration: none" href="/login.html">Login</a>
+        </button>
+        <button class="button google">
+          <a style="text-decoration: none" href="/signup.html">Sign up</a>
+        </button>
+        <% } %>
+      </div>
+    </div>
+
+    <div class="h-[calc(100vh-90px)] flex items-center justify-center ">
+      <div
+        class="lg:w-3/4 w-full lg:h-5/6 h-full lg:flex shadow-lg rounded-lg overflow-hidden bg-white"
+      >
+        <div class="lg:w-1/2 w-full p-4 bg-gray-200 relative">
+          <div
+            id="sidebar"
+            class="h-[calc(100vh-10vh)] bg-gray-800 text-white w-0 transition-width overflow-y-auto absolute overflow-scroll"
+          >
+            <div
+              class="flex justify-between items-center p-4 border-b border-gray-700"
+            >
+              <h2 class="text-lg font-semibold">Sidebar</h2>
+              <button
+                onclick="toggleSidebar()"
+                class="text-sm px-2 py-1 bg-gray-700 rounded hover:bg-gray-600"
+              >
+                Collapse
+              </button>
+            </div>
+            <ul class="p-4 space-y-2" id="document-list">
+              <div class="flex items-center justify-center min-h-screen">
+                <div class="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+              </div>
+             
+            </ul>
+          </div>
+
+          <div
+            class="bg-gray-300 w-full h-[50px] p-2"
+            style="border-radius: 10px 10px 0 0"
+          >
+            <div class="flex justify-between gap-[10px] lg:gap-[30px]"> 
+              <div class="flex gap-[10px] mt-1">
+                 <% if (user) { %>
+              <img
+                src="/images/hamburger.png"
+                alt="hamburger"
+                style="width: 20px; height: 20px; padding-top: 5px"
+                onclick="toggleSidebar()"
+                class="mt-1 "
+                id="sidebar-toggle"
+              />
+              <% } %>
+              <input type="file" id="actual-btn" hidden accept=".md" />
+             
+              <label for="actual-btn">
+                <img
+                  src="/images/file.png"
+                  alt="upload file"
+                  class="mt-2 lg:mt-1"
+                  style="width: 25px"
+                  onClick
+              /></label>
+              <button
+              onclick="createNewFile()"
+              class="lg:text-sm text-[11px] px-2 py-1 bg-gray-700 color-white rounded hover:bg-gray-600 h-[30px]"
+            >
+              New
+            </button>
+              </div>
+              <% if (user) { %>
+             <div class="flex gap-[10px]">
+              <input type="text" id="fileName" placeholder="File Name" class="w-1/2 p-1 border border-gray-400 rounded h-[30px] -mt-2"  />
+              <button
+                id="saveButton"
+                class="lg:text-sm text-[11px] px-2 py-1 bg-gray-700 color-white rounded hover:bg-gray-600 h-[30px] mt-1"
+                onClick="saveFile()"
+              >
+                Save
+              </button>
+             </div>
+              <% } %>
+            </div>
+          </div>
+          <textarea
+            id="markdownInput"
+            class="w-full h-[calc(100%-40px)] p-3 border-none outline-none resize-none bg-white rounded-md shadow-sm"
+            style="border-radius: 0 0 10px 10px"
+            placeholder="Your markdown here..."
+          ></textarea>
+        </div>
+
+        <!-- Sidebar / Output -->
+        <div class="lg:w-1/2 w-full bg-gray-300 p-4 flex">
+          <div
+            id="preview"
+            class="prose w-full border border-gray-300 p-4 rounded-md bg-white shadow-md overflow-scroll markdown-body"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/script.js"></script>
+  </body>
+</html>
