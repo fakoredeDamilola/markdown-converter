@@ -5,7 +5,7 @@ Convert Markdown to HTML, get live preview, upload markdown files, save your fil
 
 ## 🔗 Live Preview
 
-Check out the live version here: [Live Demo](https://your-live-site-link.com)
+Check out the live version here: [Live Demo](https://markdown-converter-v7za.onrender.com)
 
 ## Features
 
@@ -26,8 +26,8 @@ Follow these steps to set up the project locally:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/node_markdown.git
-   cd node_markdown
+   git clone https://github.com/fakoredeDamilola/markdown-converter
+   cd markdown-converter
    ```
 
 2. **Install dependencies**
